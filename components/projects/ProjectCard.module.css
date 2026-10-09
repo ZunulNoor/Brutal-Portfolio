@@ -1,0 +1,142 @@
+.card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--sp-4);
+  padding: var(--sp-5);
+  border: var(--border);
+  text-decoration: none;
+  box-shadow: 6px 6px 0 var(--ink);
+  transition: translate 120ms ease, box-shadow 120ms ease;
+  position: relative;
+  isolation: isolate;
+}
+
+.card:hover {
+  translate: -2px -2px;
+  box-shadow: 8px 8px 0 var(--ink);
+}
+
+/* ---- Tones (constrained to the system palette) ---- */
+
+.card[data-tone="paper"] {
+  background-color: var(--surface);
+  color: var(--ink);
+}
+
+.card[data-tone="ink"] {
+  background-color: var(--ink);
+  color: var(--paper);
+  box-shadow: 6px 6px 0 var(--concrete);
+}
+
+.card[data-tone="ink"]:hover {
+  box-shadow: 8px 8px 0 var(--concrete);
+}
+
+.card[data-tone="signal"] {
+  background-color: var(--signal);
+  color: var(--ink);
+}
+
+/* ---- Motifs: purposeful low-contrast textures ---- */
+
+.card[data-motif="grid"] {
+  background-image:
+    linear-gradient(currentcolor 1px, transparent 1px),
+    linear-gradient(90deg, currentcolor 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.card[data-motif="hatch"] {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    currentcolor 0 1px,
+    transparent 1px 9px
+  );
+}
+
+.card[data-motif="dots"] {
+  background-image: radial-gradient(currentcolor 1.2px, transparent 1.3px);
+  background-size: 18px 18px;
+}
+
+.card[data-motif="bars"] {
+  background-image: repeating-linear-gradient(
+    90deg,
+    currentcolor 0 2px,
+    transparent 2px 22px
+  );
+}
+
+/* Keep texture whisper-quiet behind the content. */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.1;
+  pointer-events: none;
+  background-image: inherit;
+}
+
+.no {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: var(--fs-h1);
+  line-height: 0.9;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  min-width: 0;
+}
+
+.top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+
+.title {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: var(--fs-h2);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.arrow {
+  font-size: var(--fs-h2);
+  line-height: 1;
+  transition: translate 120ms ease;
+}
+
+.card:hover .arrow {
+  translate: 4px 0;
+}
+
+.tagline {
+  max-width: 46rem;
+  font-size: var(--fs-lead);
+  line-height: 1.45;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: var(--fs-label);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+@media (min-width: 900px) {
+  .card {
+    grid-template-columns: 7rem 1fr;
+    padding: var(--sp-6);
+  }
+}

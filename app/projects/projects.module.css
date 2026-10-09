@@ -1,0 +1,43 @@
+.heading {
+  font-size: var(--fs-display);
+  line-height: var(--lh-tight);
+  text-transform: uppercase;
+  margin-top: var(--sp-4);
+}
+
+.intro {
+  font-size: var(--fs-lead);
+  max-width: 46rem;
+  margin-top: var(--sp-4);
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--sp-5);
+  margin-top: var(--sp-7);
+}
+
+.cta {
+  border: var(--border);
+  background: var(--surface);
+  box-shadow: 8px 8px 0 var(--ink);
+  padding: var(--sp-6);
+}
+
+.cta h2 {
+  font-size: var(--fs-h2);
+  text-transform: uppercase;
+}
+
+.cta p {
+  margin-top: var(--sp-3);
+  max-width: 40rem;
+}
+
+.ctaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+}

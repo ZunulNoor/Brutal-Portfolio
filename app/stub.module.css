@@ -1,0 +1,21 @@
+.heading {
+  font-size: var(--fs-h1);
+  text-transform: uppercase;
+  margin-top: var(--sp-4);
+}
+
+.prose {
+  max-width: 44rem;
+  margin-top: var(--sp-4);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  margin-top: var(--sp-5);
+}
+
+.back {
+  margin-top: var(--sp-4);
+}

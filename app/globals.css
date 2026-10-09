@@ -1,0 +1,301 @@
+/* ==========================================================================
+   Zun Ul Noor — Portfolio design system (Phase 1: foundation tokens)
+   Hybrid experimental brutalism: raw structure + editorial type.
+   --------------------------------------------------------------------------
+   BREAKPOINTS (documented tokens, used in media queries below):
+     --bp-sm: 640px   (large phones / small tablets)
+     --bp-md: 900px   (tablets / small laptops)
+     --bp-lg: 1200px  (desktops)
+   GRID: 12-column on desktop, 6-column on tablet, 4-column stacked on mobile.
+   RADIUS: sharp corners everywhere (0) unless a component opts out.
+   ========================================================================== */
+
+:root {
+  /* ---- Palette (AGENTS.md §4) ---- */
+  --ink: #111111;
+  --ink-soft: #232323;
+  --paper: #f3f0e8;
+  --paper-deep: #e7e2d3;
+  --signal: #ff9a03;
+  --concrete: #777777;
+
+  /* ---- Derived surfaces & lines ---- */
+  --surface: #faf8f1;
+  --line: rgba(17, 17, 17, 0.22);
+  --line-strong: #111111;
+  --line-on-dark: rgba(243, 240, 232, 0.28);
+
+  /* ---- Borders ---- */
+  --border: 2px solid var(--line-strong);
+  --border-thin: 1px solid var(--line);
+
+  /* ---- Spacing scale (4px base) ---- */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 3rem;
+  --sp-8: 4rem;
+  --sp-9: 6rem;
+  --sp-10: 8rem;
+
+  /* ---- Type scale (fluid where it matters) ---- */
+  --fs-display: clamp(3rem, 10vw, 8.5rem);
+  --fs-h1: clamp(2.25rem, 5.5vw, 4rem);
+  --fs-h2: clamp(1.5rem, 3vw, 2.25rem);
+  --fs-lead: clamp(1.125rem, 1.6vw, 1.375rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-label: 0.75rem;
+  --lh-tight: 0.95;
+  --lh-heading: 1.05;
+  --lh-body: 1.6;
+
+  /* ---- Layout ---- */
+  --maxw: 76rem;
+  --gutter: clamp(1rem, 4vw, 2rem);
+}
+
+/* ---- Base reset ---- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  overflow-x: clip;
+}
+
+body {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+main {
+  flex: 1;
+}
+
+h1,
+h2,
+h3,
+.display {
+  font-family: var(--font-display), var(--font-sans), system-ui, sans-serif;
+  font-weight: 400;
+  line-height: var(--lh-heading);
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 3px;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background: var(--signal);
+  color: var(--ink);
+}
+
+/* Visible keyboard focus everywhere (AGENTS.md §13). */
+:focus-visible {
+  outline: 3px solid var(--signal);
+  outline-offset: 2px;
+}
+
+/* ---- Layout primitives ---- */
+
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: var(--sp-8);
+}
+
+@media (min-width: 900px) {
+  .section {
+    padding-block: var(--sp-9);
+  }
+}
+
+/* Technical mono label with rule — purposeful brutalist annotation. */
+.label {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: var(--fs-label);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--concrete);
+}
+
+.label::after {
+  content: "";
+  flex: 1;
+  border-top: var(--border-thin);
+}
+
+.label--on-dark {
+  color: var(--paper);
+}
+
+/* Dark rhythm section. */
+.theme-dark {
+  background: var(--ink);
+  color: var(--paper);
+  border-block: var(--border);
+}
+
+/* ---- Buttons: hard borders, sharp corners, offset press ---- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  padding: var(--sp-3) var(--sp-5);
+  border: var(--border);
+  border-radius: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: var(--fs-small);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 var(--ink);
+  transition: translate 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+}
+
+.btn:hover {
+  translate: -1px -1px;
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+.btn:active {
+  translate: 3px 3px;
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+.btn--ink {
+  background: var(--ink);
+  color: var(--paper);
+  box-shadow: 4px 4px 0 var(--concrete);
+}
+
+.btn--ink:hover {
+  box-shadow: 5px 5px 0 var(--concrete);
+}
+
+.btn--ink:active {
+  box-shadow: 1px 1px 0 var(--concrete);
+}
+
+/* Signal orange is rationed: primary conversion actions only. */
+.btn--signal {
+  background: var(--signal);
+  color: var(--ink);
+}
+
+.theme-dark .btn {
+  box-shadow: 4px 4px 0 var(--paper);
+}
+
+.theme-dark .btn:hover {
+  box-shadow: 5px 5px 0 var(--paper);
+}
+
+.theme-dark .btn:active {
+  box-shadow: 1px 1px 0 var(--paper);
+}
+
+/* ---- Skip link ---- */
+
+.skip-link {
+  position: absolute;
+  left: var(--sp-4);
+  top: -100px;
+  z-index: 100;
+  padding: var(--sp-2) var(--sp-4);
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: var(--fs-small);
+  font-weight: 700;
+  text-decoration: none;
+  transition: top 150ms ease;
+}
+
+.skip-link:focus-visible {
+  top: var(--sp-2);
+}
+
+/* ---- Utilities ---- */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.rule {
+  border: 0;
+  border-top: var(--border);
+}
+
+/* ---- Reduced motion (AGENTS.md §10/§13) ---- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

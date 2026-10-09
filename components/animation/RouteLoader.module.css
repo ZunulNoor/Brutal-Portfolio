@@ -1,0 +1,81 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--ink);
+  color: var(--paper);
+  padding: var(--gutter);
+  padding-top: var(--sp-5);
+  padding-bottom: var(--sp-5);
+  overflow: hidden;
+}
+
+.kicker {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: var(--fs-label);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--paper);
+  opacity: 0.75;
+}
+
+.kicker::after {
+  content: "";
+  flex: 1;
+  border-top: 1px solid rgba(243, 240, 232, 0.28);
+}
+
+.wordMask {
+  overflow: hidden;
+}
+
+.word {
+  display: block;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.word[data-long="true"] {
+  font-size: clamp(2rem, 6.5vw, 5rem);
+}
+
+.word[data-long="false"] {
+  font-size: clamp(2.75rem, 12vw, 9rem);
+}
+
+.char {
+  display: inline-block;
+  will-change: transform;
+}
+
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: var(--fs-label);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.signal {
+  display: inline-block;
+  width: 0.85em;
+  height: 0.85em;
+  background: var(--signal);
+  margin-right: var(--sp-2);
+  vertical-align: baseline;
+}

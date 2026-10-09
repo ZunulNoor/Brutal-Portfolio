@@ -1,0 +1,113 @@
+.form {
+  display: grid;
+  gap: var(--sp-4);
+}
+
+.grid {
+  display: grid;
+  gap: var(--sp-4);
+}
+
+.field {
+  display: grid;
+  gap: var(--sp-2);
+  margin: 0;
+}
+
+.field label {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: var(--fs-label);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: var(--sp-3);
+  border: var(--border);
+  border-radius: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 8rem;
+}
+
+.field [aria-invalid="true"] {
+  border-color: var(--danger, #b3261e);
+  box-shadow: 3px 3px 0 var(--danger, #b3261e);
+}
+
+.fieldError,
+.statusError {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: var(--fs-small);
+  font-weight: 700;
+  color: var(--danger, #b3261e);
+}
+
+.statusError {
+  margin: 0;
+}
+
+/* Honeypot: off-screen, never focusable by humans. */
+.hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  margin: 0;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-4);
+  margin: 0;
+}
+
+.plainLink {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: var(--fs-small);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+/* Readable errors on dark surfaces (e.g. the About contact block). */
+:global(.theme-dark) .fieldError,
+:global(.theme-dark) .statusError {
+  color: #ff9a03;
+}
+
+.done {
+  border: var(--border);
+  background: var(--surface);
+  padding: var(--sp-5);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+.done h3 {
+  font-size: var(--fs-h2);
+  text-transform: uppercase;
+}
+
+.done p {
+  margin-top: var(--sp-3);
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

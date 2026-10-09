@@ -1,0 +1,190 @@
+.heroGrid {
+  display: grid;
+  gap: var(--sp-7);
+  align-items: center;
+}
+
+.hero {
+  font-size: var(--fs-display);
+  line-height: var(--lh-tight);
+  text-transform: uppercase;
+  margin-top: var(--sp-5);
+}
+
+/* Signal-orange full stop for the hero statement. */
+.tick {
+  display: inline-block;
+  width: 0.28em;
+  height: 0.28em;
+  margin-left: 0.1em;
+  background: var(--signal);
+}
+
+.lead {
+  font-size: var(--fs-lead);
+  line-height: var(--lh-body);
+  max-width: 44rem;
+  margin-top: var(--sp-5);
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  margin-top: var(--sp-6);
+}
+
+.meta {
+  list-style: none;
+  padding: var(--sp-4) 0 0;
+  margin: var(--sp-6) 0 0;
+  border-top: var(--border-thin);
+  display: grid;
+  gap: var(--sp-3);
+}
+
+.meta li {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+
+.meta span {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: var(--fs-label);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--concrete);
+}
+
+.meta strong {
+  font-size: var(--fs-small);
+  letter-spacing: 0.02em;
+}
+
+.artCol {
+  min-width: 0;
+}
+
+.index {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--sp-4);
+  border-top: var(--border);
+  padding-top: var(--sp-5);
+}
+
+.sectionTitle {
+  font-size: var(--fs-h1);
+  text-transform: uppercase;
+  margin-top: var(--sp-4);
+  text-wrap: balance;
+}
+
+.selected {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--sp-5);
+  margin-top: var(--sp-6);
+}
+
+.more {
+  margin-top: var(--sp-5);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: var(--fs-small);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.capSection {
+  margin-block: var(--sp-8);
+}
+
+.capGrid {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--sp-4);
+  margin-top: var(--sp-6);
+}
+
+.cap {
+  border: 2px solid var(--paper);
+  padding: var(--sp-4) var(--sp-5);
+}
+
+.cap h3 {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: var(--fs-small);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--signal);
+}
+
+.cap p {
+  margin-top: var(--sp-2);
+  font-size: var(--fs-small);
+  line-height: 1.7;
+}
+
+.teaser {
+  display: grid;
+  gap: var(--sp-5);
+  border: var(--border);
+  background: var(--surface);
+  box-shadow: 8px 8px 0 var(--ink);
+  padding: var(--sp-6);
+}
+
+.teaserText {
+  font-size: var(--fs-lead);
+  max-width: 40rem;
+  margin-top: var(--sp-4);
+}
+
+.teaserCtas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  align-content: start;
+}
+
+@media (min-width: 640px) {
+  .meta {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .capGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .heroGrid {
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: var(--sp-6);
+  }
+
+  /* Deliberate asymmetry: the artwork drops below the type baseline. */
+  .artCol {
+    margin-top: var(--sp-9);
+  }
+
+  .capGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .teaser {
+    grid-template-columns: 1.4fr 1fr;
+    align-items: center;
+  }
+
+  .teaserCtas {
+    justify-content: end;
+  }
+}
