@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import BookingCTA from "@/components/contact/BookingCTA";
 import {
+  PROJECT_TIMELINES,
   PROJECT_TYPES,
   sanitizeLead,
   validateLead,
@@ -39,7 +40,16 @@ export default function LeadForm() {
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
-    const input = sanitizeLead({ ...values });
+    // Scheduling context: browser timezone + locale. No GPS prompt.
+    let timezone = "";
+    let locale = "";
+    try {
+      timezone = Intl.DateTimeFormat().resolvedOptions().timeZone ?? "";
+      locale = navigator.language ?? "";
+    } catch {
+      /* unavailable — server treats as absent */
+    }
+    const input = sanitizeLead({ ...values, timezone, locale });
     const fieldErrors = validateLead(input);
     setErrors(fieldErrors);
     if (Object.keys(fieldErrors).length > 0) return;
@@ -49,7 +59,7 @@ export default function LeadForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
+        body: JSON.stringify({ ...values, timezone, locale }),
       });
       const data = (await res.json()) as { ok?: boolean; error?: string };
       if (res.ok && data.ok) {
@@ -161,26 +171,49 @@ export default function LeadForm() {
           {err("type", "Type")}
         </p>
         <p className={styles.field}>
-          <label htmlFor="lead-budget">Budget (optional)</label>
-          <input
-            id="lead-budget"
-            name="budget"
-            placeholder="e.g. $2–5k"
-            value={values.budget}
-            onChange={set("budget")}
-            maxLength={40}
-          />
+          <label htmlFor="lead-budget">Budget, USD (optional)</label>
+          <span className={styles.budgetWrap}>
+            <span aria-hidden="true" className={styles.currency}>
+              $
+            </span>
+            <input
+              id="lead-budget"
+              name="budget"
+              inputMode="numeric"
+              autoComplete="off"
+              placeholder="e.g. 5000"
+              value={values.budget}
+              onChange={(e) =>
+                setValues((v) => ({
+                  ...v,
+                  budget: e.target.value.replace(/[^0-9]/g, "").slice(0, 9),
+                }))
+              }
+              aria-invalid={Boolean(errors.budget)}
+              aria-describedby={errors.budget ? "budget-error" : undefined}
+              maxLength={9}
+            />
+          </span>
+          {err("budget", "Budget")}
         </p>
         <p className={styles.field}>
           <label htmlFor="lead-timeline">Timeline (optional)</label>
-          <input
+          <select
             id="lead-timeline"
             name="timeline"
-            placeholder="e.g. March"
             value={values.timeline}
             onChange={set("timeline")}
-            maxLength={40}
-          />
+            aria-invalid={Boolean(errors.timeline)}
+            aria-describedby={errors.timeline ? "timeline-error" : undefined}
+          >
+            <option value="">Select…</option>
+            {PROJECT_TIMELINES.map((t) => (
+              <option key={t} value={t}>
+                {t}
+              </option>
+            ))}
+          </select>
+          {err("timeline", "Timeline")}
         </p>
       </div>
 

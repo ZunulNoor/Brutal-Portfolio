@@ -61,7 +61,7 @@ export default async function HeroAscii() {
         <ul className={styles.facts} aria-label="Key facts">
           <li>
             <span>Base</span>
-            <strong>Karachi, PK — 24.86°N 67.00°E</strong>
+            <strong>Karachi, Pakistan</strong>
           </li>
           <li>
             <span>Stack</span>

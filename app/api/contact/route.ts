@@ -1,5 +1,33 @@
 import { NextRequest, NextResponse } from "next/server";
-import { isBot, sanitizeLead, validateLead } from "@/lib/contact";
+import { isBot, sanitizeLead, validateLead, type LeadInput } from "@/lib/contact";
+
+/**
+ * Sender context for scheduling: city-level geo from Vercel's edge headers
+ * (production only — absent locally) plus the browser timezone/locale the
+ * form sends along. Everything optional; nothing here blocks delivery.
+ */
+function senderLocation(req: NextRequest, input: LeadInput): string | null {
+  const parts: string[] = [];
+  const city = req.headers.get("x-vercel-ip-city");
+  const region = req.headers.get("x-vercel-ip-country-region");
+  const country = req.headers.get("x-vercel-ip-country");
+  if (city || region || country) {
+    const geo = [city, region, country]
+      .filter(Boolean)
+      .map((s) => {
+        try {
+          return decodeURIComponent(s as string);
+        } catch {
+          return s;
+        }
+      })
+      .join(", ");
+    parts.push(`approx. ${geo}`);
+  }
+  if (input.timezone) parts.push(input.timezone);
+  if (input.locale) parts.push(input.locale);
+  return parts.length > 0 ? `Sender location: ${parts.join(" · ")}` : null;
+}
 
 /** 5 submissions / IP / hour. In-memory: per server instance. */
 const WINDOW_MS = 60 * 60 * 1000;
@@ -63,8 +91,9 @@ export async function POST(req: NextRequest) {
     `Email: ${input.email}`,
     `Type: ${input.type}`,
     input.company ? `Company: ${input.company}` : null,
-    input.budget ? `Budget: ${input.budget}` : null,
+    input.budget ? `Budget: $${input.budget} USD` : null,
     input.timeline ? `Timeline: ${input.timeline}` : null,
+    senderLocation(req, input),
     "",
     input.description,
   ]

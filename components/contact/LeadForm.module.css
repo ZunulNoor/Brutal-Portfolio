@@ -39,6 +39,27 @@
   min-height: 8rem;
 }
 
+/* Budget: static $ prefix fused to the input's left edge. */
+.budgetWrap {
+  display: flex;
+  align-items: stretch;
+}
+
+.currency {
+  display: inline-flex;
+  align-items: center;
+  padding-inline: var(--sp-3);
+  border: var(--border);
+  border-right: 0;
+  background: var(--ink);
+  color: var(--paper);
+  font-weight: 700;
+}
+
+.budgetWrap input {
+  border-left: 0;
+}
+
 .field [aria-invalid="true"] {
   border-color: var(--danger, #b3261e);
   box-shadow: 3px 3px 0 var(--danger, #b3261e);
