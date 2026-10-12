@@ -137,7 +137,7 @@ export default async function CaseStudyPage({
           </ul>
         </section>
 
-        <section aria-labelledby="cs-links" className={styles.linksBox}>
+        <section aria-labelledby="cs-links" className={`theme-dark ${styles.linksBox}`}>
           <h2 id="cs-links" className={styles.h2}>
             Links
           </h2>

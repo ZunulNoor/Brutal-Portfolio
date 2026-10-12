@@ -1,15 +1,3 @@
-/* ==========================================================================
-   Zun Ul Noor — Portfolio design system (Phase 1: foundation tokens)
-   Hybrid experimental brutalism: raw structure + editorial type.
-   --------------------------------------------------------------------------
-   BREAKPOINTS (documented tokens, used in media queries below):
-     --bp-sm: 640px   (large phones / small tablets)
-     --bp-md: 900px   (tablets / small laptops)
-     --bp-lg: 1200px  (desktops)
-   GRID: 12-column on desktop, 6-column on tablet, 4-column stacked on mobile.
-   RADIUS: sharp corners everywhere (0) unless a component opts out.
-   ========================================================================== */
-
 :root {
   /* ---- Palette (AGENTS.md §4) ---- */
   --ink: #111111;

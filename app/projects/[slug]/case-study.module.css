@@ -86,7 +86,7 @@
   background: var(--ink);
   color: var(--paper);
   padding: var(--sp-6);
-  box-shadow: 8px 8px 0 var(--concrete);
+  box-shadow: 8px 8px 0 var(--signal);
 }
 
 .linksBox .h2 {
