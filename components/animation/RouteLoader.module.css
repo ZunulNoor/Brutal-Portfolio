@@ -17,7 +17,7 @@
   display: flex;
   align-items: center;
   gap: var(--sp-3);
-  font-family: var(--font-mono), ui-monospace, monospace;
+  font-family: var(--font-brico), "Arial Narrow", Arial, sans-serif;
   font-size: var(--fs-label);
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -39,7 +39,7 @@
 .word {
   display: block;
   font-family: var(--font-display), system-ui, sans-serif;
-  font-weight: 400;
+  font-weight: 800;
   line-height: 0.95;
   letter-spacing: -0.01em;
   white-space: nowrap;
@@ -64,7 +64,7 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--sp-4);
-  font-family: var(--font-mono), ui-monospace, monospace;
+  font-family: var(--font-brico), "Arial Narrow", Arial, sans-serif;
   font-size: var(--fs-label);
   font-weight: 700;
   letter-spacing: 0.14em;

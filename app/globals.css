@@ -54,7 +54,7 @@
   --lh-body: 1.6;
 
   /* ---- Layout ---- */
-  --maxw: 76rem;
+  --maxw: 90rem;
   --gutter: clamp(1rem, 4vw, 2rem);
 }
 
@@ -101,7 +101,7 @@ h2,
 h3,
 .display {
   font-family: var(--font-display), var(--font-sans), system-ui, sans-serif;
-  font-weight: 400;
+  font-weight: 800;
   line-height: var(--lh-heading);
   letter-spacing: -0.01em;
   text-wrap: balance;
@@ -146,18 +146,12 @@ svg {
   padding-block: var(--sp-8);
 }
 
-@media (min-width: 900px) {
-  .section {
-    padding-block: var(--sp-9);
-  }
-}
-
 /* Technical mono label with rule — purposeful brutalist annotation. */
 .label {
   display: flex;
   align-items: center;
   gap: var(--sp-3);
-  font-family: var(--font-mono), ui-monospace, monospace;
+  font-family: var(--font-brico), "Arial Narrow", Arial, sans-serif;
   font-size: var(--fs-label);
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -194,7 +188,7 @@ svg {
   border-radius: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--font-mono), ui-monospace, monospace;
+  font-family: var(--font-brico), "Arial Narrow", Arial, sans-serif;
   font-size: var(--fs-small);
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -257,7 +251,7 @@ svg {
   padding: var(--sp-2) var(--sp-4);
   background: var(--ink);
   color: var(--paper);
-  font-family: var(--font-mono), ui-monospace, monospace;
+  font-family: var(--font-brico), "Arial Narrow", Arial, sans-serif;
   font-size: var(--fs-small);
   font-weight: 700;
   text-decoration: none;

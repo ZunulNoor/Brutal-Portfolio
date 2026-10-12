@@ -1,30 +1,36 @@
 import type { Metadata } from "next";
-import { Archivo_Black, Space_Grotesk, Space_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import { Suspense } from "react";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import RouteLoader from "@/components/animation/RouteLoader";
+import TabAttention from "@/components/animation/TabAttention";
 import { canonical, site, siteUrl } from "@/lib/site";
 import "./globals.css";
 
-const display = Archivo_Black({
-  weight: "400",
-  subsets: ["latin"],
+/**
+ * Bricolage Grotesque, self-hosted from public/fonts (variable
+ * opsz/wdth/wght, WOFF2). One family serves all three type tokens —
+ * no Google Fonts requests at build or runtime.
+ */
+const display = localFont({
+  src: "../public/fonts/BricolageGrotesque-Variable.woff2",
+  weight: "200 800",
   variable: "--font-display",
   display: "swap",
 });
 
-const sans = Space_Grotesk({
-  weight: ["400", "500", "700"],
-  subsets: ["latin"],
+const sans = localFont({
+  src: "../public/fonts/BricolageGrotesque-Variable.woff2",
+  weight: "200 800",
   variable: "--font-sans",
   display: "swap",
 });
 
-const mono = Space_Mono({
-  weight: ["400", "700"],
-  subsets: ["latin"],
-  variable: "--font-mono",
+const brico = localFont({
+  src: "../public/fonts/BricolageGrotesque-Variable.woff2",
+  weight: "200 800",
+  variable: "--font-brico",
   display: "swap",
 });
 
@@ -96,7 +102,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${display.variable} ${sans.variable} ${mono.variable}`}
+      className={`${display.variable} ${sans.variable} ${brico.variable}`}
     >
       <body>
         <StructuredData />
@@ -109,6 +115,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Suspense fallback={null}>
           <RouteLoader />
         </Suspense>
+        <TabAttention />
       </body>
     </html>
   );

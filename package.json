@@ -22,5 +22,21 @@
     "eslint": "^9",
     "eslint-config-next": "16.4.0",
     "typescript": "^5"
-  }
+  },
+  "description": "Personal portfolio for **Zun Ul Noor**, Frontend Engineer / Full-Stack Developer based in Karachi, Pakistan. Built with Next.js App Router + TypeScript in a hybrid experimental-brutalist visual identity (ink black `#111111`, warm paper `#F3F0E8`, signal orange `#FF9A03`).",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZunulNoor/Brutal-Portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZunulNoor/Brutal-Portfolio/issues"
+  },
+  "homepage": "https://github.com/ZunulNoor/Brutal-Portfolio#readme"
 }

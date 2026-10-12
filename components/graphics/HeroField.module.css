@@ -13,7 +13,7 @@
 }
 
 .stamp {
-  font-family: var(--font-mono), ui-monospace, monospace;
+  font-family: var(--font-brico), "Arial Narrow", Arial, sans-serif;
   font-size: 22px;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -25,7 +25,7 @@
   gap: var(--sp-3);
   padding: var(--sp-2) var(--sp-3);
   border-top: var(--border);
-  font-family: var(--font-mono), ui-monospace, monospace;
+  font-family: var(--font-brico), "Arial Narrow", Arial, sans-serif;
   font-size: var(--fs-label);
   font-weight: 700;
   letter-spacing: 0.12em;

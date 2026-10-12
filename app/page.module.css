@@ -50,7 +50,7 @@
 }
 
 .meta span {
-  font-family: var(--font-mono), ui-monospace, monospace;
+  font-family: var(--font-brico), "Arial Narrow", Arial, sans-serif;
   font-size: var(--fs-label);
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -93,7 +93,7 @@
 
 .more {
   margin-top: var(--sp-5);
-  font-family: var(--font-mono), ui-monospace, monospace;
+  font-family: var(--font-brico), "Arial Narrow", Arial, sans-serif;
   font-size: var(--fs-small);
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -118,7 +118,7 @@
 }
 
 .cap h3 {
-  font-family: var(--font-mono), ui-monospace, monospace;
+  font-family: var(--font-brico), "Arial Narrow", Arial, sans-serif;
   font-size: var(--fs-small);
   font-weight: 700;
   letter-spacing: 0.14em;

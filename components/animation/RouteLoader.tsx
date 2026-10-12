@@ -11,8 +11,13 @@ import styles from "./RouteLoader.module.css";
  * Produx-style route loader (client-only overlay).
  *
  * Full-screen ink curtain carries the route's name — "ZUN UL NOOR" on home,
- * the section/project name elsewhere — holds ~1s, then the word FLIPs into
- * the navbar wordmark (#site-wordmark) and the curtain lifts.
+ * the section/project name elsewhere — holds ~1s, then the name and the
+ * curtain exit upward together in one synced motion.
+ *
+ * The sequence starts only after the self-hosted Bricolage files
+ * (document.fonts.ready) AND full page load, so the loader — set in the
+ * same font — never pops in unstyled. A 4s safety cap guarantees visitors
+ * are never trapped behind the curtain by a hung resource.
  *
  * Server HTML underneath is untouched (SEO/initial paint unaffected); the
  * overlay mounts only after hydration and renders nothing at all under
@@ -65,61 +70,80 @@ export default function RouteLoader() {
     const prevOverflow = document.documentElement.style.overflow;
     document.documentElement.style.overflow = "hidden";
 
-    const ctx = gsap.context(() => {
-      const chars = word.querySelectorAll(`.${styles.char}`);
-      const chrome = overlay.querySelectorAll(
-        `.${styles.kicker}, .${styles.foot}`,
-      );
-      const target = document.getElementById("site-wordmark");
+    let cancelled = false;
+    let ctx: gsap.Context | null = null;
 
-      const tl = gsap.timeline({
-        defaults: { ease: "expo.out" },
-        onComplete: () => {
-          document.documentElement.style.overflow = prevOverflow;
-          gsap.set(overlay, { autoAlpha: 0 });
-        },
-      });
+    // Park the curtain up immediately so no half-rendered page flashes.
+    gsap.set(overlay, { autoAlpha: 1, yPercent: 0 });
+    gsap.set(word.querySelectorAll(`.${styles.char}`), { yPercent: 112 });
 
-      // Reset from any previous run, then reveal.
-      tl.set(overlay, { autoAlpha: 1, yPercent: 0 })
-        .set(word, { x: 0, y: 0, scale: 1, opacity: 1, yPercent: 0 })
-        .set(chars, { yPercent: 112 })
-        .set(chrome, { opacity: 1 })
-        // 1. Chars rise in with stagger.
-        .to(chars, { yPercent: 0, duration: 0.7, stagger: 0.035 })
-        // 2. Hold so the name reads (~1s after reveal).
-        .to({}, { duration: 0.9 })
-        // 3. Word flies into the navbar wordmark (FLIP), chrome fades.
-        .add(() => {
-          if (target) {
-            const from = word.getBoundingClientRect();
-            const to = target.getBoundingClientRect();
-            const dx =
-              to.left + to.width / 2 - (from.left + from.width / 2);
-            const dy = to.top + to.height / 2 - (from.top + from.height / 2);
-            const scale = Math.min(to.width / from.width || 0, 1);
-            gsap.set(target, { opacity: 0 });
+    const start = () => {
+      if (cancelled) return;
+      ctx = gsap.context(() => {
+        const chars = word.querySelectorAll(`.${styles.char}`);
+        const chrome = overlay.querySelectorAll(
+          `.${styles.kicker}, .${styles.foot}`,
+        );
+
+        const tl = gsap.timeline({
+          defaults: { ease: "expo.out" },
+          onComplete: () => {
+            document.documentElement.style.overflow = prevOverflow;
+            gsap.set(overlay, { autoAlpha: 0 });
+          },
+        });
+
+        // Reset from any previous run, then reveal.
+        tl.set(overlay, { autoAlpha: 1, yPercent: 0 })
+          .set(word, { x: 0, y: 0, scale: 1, opacity: 1, yPercent: 0 })
+          .set(chars, { yPercent: 112 })
+          .set(chrome, { opacity: 1 })
+          // 1. Chars rise in with stagger.
+          .to(chars, { yPercent: 0, duration: 0.7, stagger: 0.035 })
+          // 2. Hold so the name reads (~1s after reveal).
+          .to({}, { duration: 0.9 })
+          // 3. Name and curtain exit upward as one synced motion.
+          .add(() => {
+            gsap.to(chrome, { opacity: 0, duration: 0.35 });
             gsap.to(word, {
-              x: dx,
-              y: dy,
-              scale: scale > 0 ? scale : 0.12,
+              y: -160,
+              scale: 0.9,
+              opacity: 0,
               transformOrigin: "center center",
-              duration: 0.7,
+              duration: 0.9,
               ease: "expo.inOut",
             });
-            gsap.to(target, { opacity: 1, duration: 0.3, delay: 0.65 });
-          } else {
-            gsap.to(word, { yPercent: -30, opacity: 0, duration: 0.5 });
-          }
-          gsap.to(chrome, { opacity: 0, duration: 0.4 });
-        })
-        .to({}, { duration: 0.7 })
-        // 4. Curtain lifts, revealing the page.
-        .to(overlay, { yPercent: -100, duration: 0.7, ease: "expo.inOut" });
-    }, overlay);
+          })
+          // 4. Curtain lifts in lockstep with the name.
+          .to(overlay, { yPercent: -100, duration: 0.9, ease: "expo.inOut" }, "<");
+      }, overlay);
+    };
+
+    // Wait for the Bricolage files + full page load before revealing.
+    // Safety cap: never hold the curtain longer than ~4s.
+    const waitForLoad = new Promise<void>((resolve) => {
+      if (document.readyState === "complete") resolve();
+      else {
+        window.addEventListener("load", () => resolve(), { once: true });
+        setTimeout(resolve, 4000);
+      }
+    });
+    const waitForFonts = (async () => {
+      try {
+        if (typeof document.fonts !== "undefined") await document.fonts.ready;
+      } catch {
+        /* proceed unstyled rather than hang */
+      }
+    })();
+    const timeout = new Promise<void>((resolve) => setTimeout(resolve, 4000));
+    void Promise.race([Promise.all([waitForFonts, waitForLoad]), timeout]).then(
+      start,
+    );
 
     return () => {
-      ctx.revert();
+      cancelled = true;
+      ctx?.revert();
+      ctx = null;
       document.documentElement.style.overflow = prevOverflow;
     };
   }, [pathname, mounted, reduced]);

@@ -1,0 +1,109 @@
+.panel {
+  background: var(--ink);
+  color: var(--paper);
+  border: var(--border);
+  box-shadow: 10px 10px 0 var(--signal);
+}
+
+.strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  padding: var(--sp-2) var(--sp-4);
+  border-bottom: 1px solid var(--line-on-dark);
+  font-family: var(--font-brico), "Arial Narrow", Arial, sans-serif;
+  font-size: var(--fs-label);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.strip:last-child {
+  border-bottom: 0;
+  border-top: 1px solid var(--line-on-dark);
+}
+
+.dot {
+  display: inline-block;
+  width: 0.7em;
+  height: 0.7em;
+  background: var(--signal);
+  margin-right: var(--sp-2);
+}
+
+.stage {
+  padding: var(--sp-5) var(--sp-3);
+  perspective: 1200px;
+  overflow: hidden;
+}
+
+@media (min-width: 900px) {
+  .stage {
+    padding: var(--sp-6) var(--sp-5);
+  }
+}
+
+.tilt {
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.art {
+  margin: 0;
+  font-family: ui-monospace, "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: clamp(3px, 1.04vw, 9px);
+  line-height: 1.08;
+  white-space: pre;
+  text-align: center;
+}
+
+.line {
+  display: block;
+  will-change: transform, opacity;
+}
+
+/* Compact scale for side-column placement. */
+.compact .art {
+  font-size: clamp(2.6px, 0.58vw, 5.2px);
+}
+
+@media (max-width: 899px) {
+  .compact .art {
+    font-size: clamp(3px, 1.35vw, 6px);
+  }
+}
+
+.base {
+  position: relative;
+  color: var(--paper);
+  transform: translateZ(26px);
+}
+
+.echo {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.echoOrange {
+  color: var(--signal);
+  transform: translate(9px, 9px);
+}
+
+.echoConcrete {
+  color: var(--concrete);
+  opacity: 0.55;
+  transform: translate(-7px, -7px);
+}
+
+@media (max-width: 639px) {
+  .echoOrange {
+    transform: translate(5px, 5px);
+  }
+
+  .echoConcrete {
+    transform: translate(-4px, -4px);
+  }
+}
