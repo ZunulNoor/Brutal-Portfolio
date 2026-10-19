@@ -2,7 +2,6 @@ import Link from "next/link";
 import type { Project } from "@/content/projects";
 import styles from "./ProjectCard.module.css";
 
-/** Index/selected-work row: number, title, summary, meta, case link. */
 export default function ProjectCard({ project }: { project: Project }) {
   return (
     <Link

@@ -9,14 +9,13 @@
   transition: translate 120ms ease, box-shadow 120ms ease;
   position: relative;
   isolation: isolate;
+  overflow: clip;
 }
 
 .card:hover {
   translate: -2px -2px;
   box-shadow: 8px 8px 0 var(--ink);
 }
-
-/* ---- Tones (constrained to the system palette) ---- */
 
 .card[data-tone="paper"] {
   background-color: var(--surface);
@@ -38,45 +37,56 @@
   color: var(--ink);
 }
 
-/* ---- Motifs: purposeful low-contrast textures ---- */
-
-.card[data-motif="grid"] {
-  background-image:
-    linear-gradient(currentcolor 1px, transparent 1px),
-    linear-gradient(90deg, currentcolor 1px, transparent 1px);
-  background-size: 28px 28px;
-}
-
-.card[data-motif="hatch"] {
-  background-image: repeating-linear-gradient(
-    -45deg,
-    currentcolor 0 1px,
-    transparent 1px 9px
-  );
-}
-
-.card[data-motif="dots"] {
-  background-image: radial-gradient(currentcolor 1.2px, transparent 1.3px);
-  background-size: 18px 18px;
-}
-
+.card[data-motif="grid"],
+.card[data-motif="hatch"],
+.card[data-motif="dots"],
 .card[data-motif="bars"] {
-  background-image: repeating-linear-gradient(
-    90deg,
-    currentcolor 0 2px,
-    transparent 2px 22px
-  );
+  background-image: none;
 }
 
-/* Keep texture whisper-quiet behind the content. */
 .card::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
-  opacity: 0.1;
+  opacity: 0.08;
   pointer-events: none;
-  background-image: inherit;
+}
+
+.card[data-motif="grid"]::before {
+  background-image:
+    linear-gradient(currentcolor 1px, transparent 1px),
+    linear-gradient(90deg, currentcolor 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.card[data-motif="hatch"]::before {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    currentcolor 0 1px,
+    transparent 1px 12px
+  );
+}
+
+.card[data-motif="dots"]::before {
+  background-image: radial-gradient(currentcolor 1.2px, transparent 1.4px);
+  background-size: 18px 18px;
+}
+
+.card[data-motif="bars"]::before {
+  background-image: repeating-linear-gradient(
+    90deg,
+    currentcolor 0 2px,
+    transparent 2px 26px
+  );
+}
+
+.card[data-tone="signal"]::before {
+  color: rgba(17, 17, 17, 0.22);
+}
+
+.card[data-tone="ink"]::before {
+  opacity: 0.1;
 }
 
 .no {

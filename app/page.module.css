@@ -11,7 +11,6 @@
   margin-top: var(--sp-5);
 }
 
-/* Signal-orange full stop for the hero statement. */
 .tick {
   display: inline-block;
   width: 0.28em;
@@ -71,9 +70,9 @@
   list-style: none;
   padding: 0;
   display: grid;
-  gap: var(--sp-4);
+  gap: var(--sp-5);
   border-top: var(--border);
-  padding-top: var(--sp-5);
+  padding-top: var(--sp-6);
 }
 
 .sectionTitle {
@@ -92,7 +91,7 @@
 }
 
 .more {
-  margin-top: var(--sp-5);
+  margin-top: var(--sp-6);
   font-family: var(--font-brico), "Arial Narrow", Arial, sans-serif;
   font-size: var(--fs-small);
   font-weight: 700;
@@ -101,14 +100,14 @@
 }
 
 .capSection {
-  margin-block: var(--sp-8);
+  margin-block: 0;
 }
 
 .capGrid {
   list-style: none;
   padding: 0;
   display: grid;
-  gap: var(--sp-4);
+  gap: var(--sp-5);
   margin-top: var(--sp-6);
 }
 
@@ -170,7 +169,6 @@
     gap: var(--sp-6);
   }
 
-  /* Deliberate asymmetry: the artwork drops below the type baseline. */
   .artCol {
     margin-top: var(--sp-9);
   }

@@ -10,7 +10,6 @@
   will-change: transform;
 }
 
-/* Editorial outline treatment for a single kinetic line. */
 .outline {
   color: var(--paper);
   -webkit-text-stroke: 3px var(--ink);

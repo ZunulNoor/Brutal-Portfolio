@@ -10,7 +10,14 @@ const projectsCanonical = canonical("/projects");
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Selected work by Zun Ul Noor: production logistics SaaS, car-sharing platforms, corporate sites, machine-learning apps, and an independently published WordPress plugin.",
+    "8 case studies by Zun Ul Noor: logistics SaaS, car-sharing UI, WordPress plugin, ML app. React, Next.js, Karachi.",
+  keywords: [
+    "Zun Ul Noor projects",
+    "React SaaS case studies",
+    "Next.js portfolio Pakistan",
+    "logistics dashboard developer",
+    "WordPress plugin Zipped Docs",
+  ],
   ...(projectsCanonical
     ? {
         alternates: { canonical: projectsCanonical },
@@ -59,7 +66,9 @@ export default function ProjectsPage() {
             <h2 id="projects-cta-heading">Something to build?</h2>
             <p>
               Ongoing frontend maintenance, new features, or a project from
-              zero — start with a conversation.
+              zero — start with a conversation. Every case study labels
+              professional vs independent work, so you know exactly what
+              you&apos;re hiring for.
             </p>
             <p className={styles.ctaRow}>
               <a

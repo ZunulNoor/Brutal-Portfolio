@@ -1,25 +1,11 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { gsap } from "gsap";
 import { prefersReducedMotion } from "@/lib/motion";
 import styles from "./AsciiPortrait.module.css";
 
-/**
- * Self-portrait as ASCII glyphs: paper type on an ink panel with signal
- * and concrete echo layers for hard 3D depth.
- *
- * - Cursor-responsive: the stack tilts in 3D toward the pointer.
- * - Hover decodes: the portrait scrambles into "ZUN UL NOOR" set in the
- *   same glyph set, and scrambles back on leave. Same 73×100 grid, so the
- *   panel never shifts size.
- * - Reduced-motion / touch: static portrait, no listeners, no morph.
- * The art itself is decorative (aria-hidden); a caption names it.
- */
-
 const GLYPHS = "@%#*+=-:. ";
 
-/** Chunky 7-row block letters, drawn from the portrait's own charset. */
 const LETTERS: Record<string, string[]> = {
   Z: ["#######", "     #", "    #", "   #", "  #", " #", "#######"],
   U: ["##   ##", "##   ##", "##   ##", "##   ##", "##   ##", "##   ##", "#######"],
@@ -32,7 +18,6 @@ const LETTERS: Record<string, string[]> = {
 
 const NAME = ["Z", "U", "N", " ", "U", "L", " ", "N", "O", "O", "R"];
 
-/** Name banner centered on the same grid as the portrait (no layout shift). */
 function nameBanner(width: number, height: number): string[] {
   const rows: string[] = [];
   for (let r = 0; r < 7; r++) {
@@ -55,16 +40,14 @@ export default function AsciiPortrait({
   compact = false,
 }: {
   lines: string[];
-  /** Smaller glyph scale for side-column placement. */
+
   compact?: boolean;
 }) {
   const panelRef = useRef<HTMLElement>(null);
   const tiltRef = useRef<HTMLDivElement>(null);
   const total = lines.length;
   const width = lines[0]?.length ?? 0;
-  // Current glyph frame. Initial value matches the SSR HTML exactly, so
-  // hydration is clean; the hover morph re-renders through React instead of
-  // mutating DOM text behind its back (which trips DevTools invariants).
+
   const [frame, setFrame] = useState<string[]>(lines);
   const banner = useMemo(() => nameBanner(width, total), [width, total]);
 
@@ -114,12 +97,19 @@ export default function AsciiPortrait({
       panel.addEventListener("pointerleave", onLeave);
     }
 
-    // Cursor tilt — pointer only, so touch layouts stay static.
+    let tiltApi: {
+      to(target: object, vars: Record<string, unknown>): void;
+      killTweensOf(target: object): void;
+    } | null = null;
+    void import("gsap").then(({ gsap }) => {
+      tiltApi = gsap;
+    });
     const onMove = (e: PointerEvent) => {
+      if (!tiltApi) return;
       const rect = panel.getBoundingClientRect();
       const px = (e.clientX - rect.left) / rect.width - 0.5;
       const py = (e.clientY - rect.top) / rect.height - 0.5;
-      gsap.to(tilt, {
+      tiltApi.to(tilt, {
         rotationY: px * 10,
         rotationX: -py * 8,
         duration: 0.5,
@@ -128,7 +118,7 @@ export default function AsciiPortrait({
       });
     };
     const onTiltLeave = () => {
-      gsap.to(tilt, {
+      tiltApi?.to(tilt, {
         rotationY: 0,
         rotationX: 0,
         duration: 0.8,
@@ -147,7 +137,7 @@ export default function AsciiPortrait({
       panel.removeEventListener("pointerleave", onLeave);
       panel.removeEventListener("pointermove", onMove);
       panel.removeEventListener("pointerleave", onTiltLeave);
-      gsap.killTweensOf(tilt);
+      tiltApi?.killTweensOf(tilt);
     };
   }, [lines, banner]);
 

@@ -28,7 +28,6 @@ const EMPTY = {
   website: "",
 };
 
-/** Project inquiry form. Client checks for usability; the API re-checks. */
 export default function LeadForm() {
   const [values, setValues] = useState(EMPTY);
   const [errors, setErrors] = useState<LeadErrors>({});
@@ -40,14 +39,14 @@ export default function LeadForm() {
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
-    // Scheduling context: browser timezone + locale. No GPS prompt.
+
     let timezone = "";
     let locale = "";
     try {
       timezone = Intl.DateTimeFormat().resolvedOptions().timeZone ?? "";
       locale = navigator.language ?? "";
     } catch {
-      /* unavailable — server treats as absent */
+
     }
     const input = sanitizeLead({ ...values, timezone, locale });
     const fieldErrors = validateLead(input);
@@ -233,7 +232,6 @@ export default function LeadForm() {
         {err("description", "Description")}
       </p>
 
-      {/* Honeypot: humans never fill this. */}
       <p className={styles.hp} aria-hidden="true">
         <label htmlFor="lead-website">Website</label>
         <input

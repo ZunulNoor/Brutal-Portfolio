@@ -4,12 +4,6 @@ import HeroField from "@/components/graphics/HeroField";
 import { site } from "@/lib/site";
 import styles from "@/app/page.module.css";
 
-/**
- * REVERT BACKUP — the pre-ASCII hero, kept byte-identical.
- * To revert the ASCII hero: in app/page.tsx, replace <HeroAscii /> with
- * <HeroLegacy /> and restore the KineticLines/HeroField/site imports.
- * Delete this file only when the ASCII hero is approved.
- */
 export default function HeroLegacy() {
   return (
     <section className="section" aria-labelledby="intro-heading">

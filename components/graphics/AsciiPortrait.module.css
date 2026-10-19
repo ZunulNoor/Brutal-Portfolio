@@ -64,7 +64,6 @@
   will-change: transform, opacity;
 }
 
-/* Compact scale for side-column placement. */
 .compact .art {
   font-size: clamp(2.6px, 0.58vw, 5.2px);
 }

@@ -1,9 +1,3 @@
-/**
- * Shared site configuration.
- * The production URL is intentionally NOT hardcoded (AGENTS.md §12):
- * set NEXT_PUBLIC_SITE_URL in the environment (see .env.example).
- */
-
 export const site = {
   name: "Zun Ul Noor",
   role: "Frontend Engineer / Full-Stack Developer",
@@ -18,7 +12,6 @@ export const site = {
 
 export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
 
-/** Absolute canonical URL for a path. Empty when site URL is unconfigured. */
 export function canonical(path: string): string | undefined {
   if (!siteUrl) return undefined;
   const clean = path.startsWith("/") ? path : `/${path}`;

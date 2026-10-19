@@ -14,7 +14,7 @@
 .h2 {
   font-size: var(--fs-h2);
   text-transform: uppercase;
-  margin-top: var(--sp-8);
+  margin-top: var(--sp-7);
   padding-top: var(--sp-5);
   border-top: var(--border);
 }
@@ -23,8 +23,8 @@
   list-style: none;
   padding: 0;
   display: grid;
-  gap: var(--sp-4);
-  margin-top: var(--sp-5);
+  gap: var(--sp-5);
+  margin-top: var(--sp-6);
 }
 
 .principles li {
@@ -119,6 +119,31 @@
   min-width: 0;
   border: 2px solid var(--paper);
   padding: var(--sp-5);
+}
+
+.faq {
+  display: grid;
+  gap: var(--sp-4);
+  margin-top: var(--sp-5);
+}
+
+.faq div {
+  border: var(--border-thin);
+  background: var(--surface);
+  padding: var(--sp-4) var(--sp-5);
+}
+
+.faq dt {
+  font-family: var(--font-brico), "Arial Narrow", Arial, sans-serif;
+  font-size: var(--fs-small);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.faq dd {
+  margin: var(--sp-2) 0 0;
+  max-width: 44rem;
 }
 
 @media (min-width: 900px) {

@@ -1,11 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { isBot, sanitizeLead, validateLead, type LeadInput } from "@/lib/contact";
 
-/**
- * Sender context for scheduling: city-level geo from Vercel's edge headers
- * (production only — absent locally) plus the browser timezone/locale the
- * form sends along. Everything optional; nothing here blocks delivery.
- */
 function senderLocation(req: NextRequest, input: LeadInput): string | null {
   const parts: string[] = [];
   const city = req.headers.get("x-vercel-ip-city");
@@ -29,7 +24,6 @@ function senderLocation(req: NextRequest, input: LeadInput): string | null {
   return parts.length > 0 ? `Sender location: ${parts.join(" · ")}` : null;
 }
 
-/** 5 submissions / IP / hour. In-memory: per server instance. */
 const WINDOW_MS = 60 * 60 * 1000;
 const MAX_PER_WINDOW = 5;
 const hits = new Map<string, { count: number; reset: number }>();
@@ -66,7 +60,7 @@ export async function POST(req: NextRequest) {
   }
 
   const input = sanitizeLead(raw as Record<string, unknown>);
-  if (isBot(input)) return NextResponse.json({ ok: true }); // silent accept
+  if (isBot(input)) return NextResponse.json({ ok: true });
 
   const errors = validateLead(input);
   if (Object.keys(errors).length > 0) {

@@ -13,7 +13,6 @@ const HOT_RADIUS = 62;
 
 type Dot = { x: number; y: number };
 
-/** Grid of rest positions. Rendered in SSR HTML as the static fallback. */
 function buildDots(): Dot[] {
   const dots: Dot[] = [];
   for (let y = GAP; y < H - GAP / 2; y += GAP) {
@@ -31,12 +30,6 @@ const PLUSES: Array<[number, number]> = [
   [52, 470],
 ];
 
-/**
- * "Signal field" — a brutalist dot-matrix that repels from the cursor,
- * with hot-zone dots flipping to signal orange. Decorative (aria-hidden);
- * the animation loop runs only while the pointer is engaged and the
- * figure is on screen, and is disabled under prefers-reduced-motion.
- */
 export default function HeroField() {
   const svgRef = useRef<SVGSVGElement>(null);
   const dots = useMemo(() => buildDots(), []);
@@ -171,7 +164,6 @@ export default function HeroField() {
           <circle key={i} data-dot cx={d.x} cy={d.y} r="3.5" fill="var(--ink)" />
         ))}
 
-        {/* Collage shapes punch out over the matrix. */}
         <circle cx="478" cy="168" r="92" fill="none" stroke="var(--ink)" strokeWidth="10" />
         <rect x="88" y="336" width="118" height="118" fill="var(--signal)" stroke="var(--ink)" strokeWidth="4" />
         <rect x="0" y="492" width={W} height="68" fill="url(#herofield-hatch)" stroke="var(--ink)" strokeWidth="2" />
@@ -189,7 +181,6 @@ export default function HeroField() {
           />
         ))}
 
-        {/* Crop-mark corners. */}
         {[
           [8, 8],
           [W - 8, 8],

@@ -2,11 +2,6 @@ import type { MetadataRoute } from "next";
 import { projects } from "@/content/projects";
 import { siteUrl } from "@/lib/site";
 
-/**
- * Stable URLs for all primary pages + case studies (AGENTS.md §12).
- * No guessed domain: when NEXT_PUBLIC_SITE_URL is unset we emit no
- * entries rather than a fabricated production URL.
- */
 export default function sitemap(): MetadataRoute.Sitemap {
   if (!siteUrl) return [];
   const base = siteUrl.replace(/\/$/, "");

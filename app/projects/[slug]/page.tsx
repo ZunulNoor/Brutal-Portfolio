@@ -18,13 +18,23 @@ export async function generateMetadata({
   const project = getProject(slug);
   if (!project) return { title: "Project not found" };
   const url = canonical(`/projects/${slug}`);
+  const description =
+    project.tagline.length > 150
+      ? `${project.tagline.slice(0, 147)}…`
+      : project.tagline;
   return {
     title: `${project.title} — case study`,
-    description: project.tagline,
+    description,
+    keywords: [
+      `${project.title} case study`,
+      "Zun Ul Noor",
+      ...project.stack.slice(0, 4),
+      project.type,
+    ],
     ...(url
       ? {
           alternates: { canonical: url },
-          openGraph: { title: `${project.title} — case study`, description: project.tagline, url },
+          openGraph: { title: `${project.title} — case study`, description, url },
         }
       : {}),
   };
@@ -48,9 +58,32 @@ export default async function CaseStudyPage({
   const project = getProject(slug);
   if (!project) notFound();
   const next = getNextProject(slug);
+  const base = (process.env.NEXT_PUBLIC_SITE_URL ?? "").replace(/\/$/, "");
+  const breadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Projects",
+        ...(base ? { item: `${base}/projects` } : {}),
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: `${project.no} — ${project.title}`,
+        ...(base ? { item: `${base}/projects/${slug}` } : {}),
+      },
+    ],
+  };
 
   return (
     <article className="section" aria-labelledby="case-heading">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
+      />
       <div className="container">
         <nav aria-label="Breadcrumb" className={styles.crumb}>
           <Link href="/projects">Projects</Link>

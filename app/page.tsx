@@ -59,6 +59,9 @@ export default function Home() {
               </li>
             ))}
           </ul>
+          <p className={styles.more}>
+            <Link href="/about">How I work — engineering approach →</Link>
+          </p>
         </div>
       </section>
 

@@ -16,7 +16,7 @@
   padding: 0;
   display: grid;
   gap: var(--sp-5);
-  margin-top: var(--sp-7);
+  margin-top: var(--sp-6);
 }
 
 .cta {
@@ -40,4 +40,5 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--sp-4);
+  margin-top: var(--sp-5);
 }

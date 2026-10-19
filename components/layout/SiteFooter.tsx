@@ -4,7 +4,6 @@ import { nav, site } from "@/lib/site";
 import CopyrightYear from "./CopyrightYear";
 import styles from "./SiteFooter.module.css";
 
-/** Shared footer: sitemap, booking action, colophon. Server component. */
 export default function SiteFooter() {
   return (
     <footer className={`theme-dark ${styles.footer}`}>
@@ -57,6 +56,13 @@ export default function SiteFooter() {
             </Suspense>{" "}
             {site.name} — {site.location}
           </p>
+          <address className={styles.meta} style={{ fontStyle: "normal" }}>
+            <a href={`tel:${site.phone.replace(/\s/g, "")}`}>{site.phone}</a>
+            {" · "}
+            <a href={`mailto:${site.email}`}>{site.email}</a>
+            {" · "}
+            {site.location}
+          </address>
         </nav>
       </div>
     </footer>

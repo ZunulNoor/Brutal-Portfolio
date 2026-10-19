@@ -57,7 +57,7 @@
 .h2 {
   font-size: var(--fs-h2);
   text-transform: uppercase;
-  margin-top: var(--sp-8);
+  margin-top: var(--sp-7);
   padding-top: var(--sp-5);
   border-top: var(--border);
 }
@@ -81,7 +81,7 @@
 }
 
 .linksBox {
-  margin-top: var(--sp-8);
+  margin-top: var(--sp-7);
   border: var(--border);
   background: var(--ink);
   color: var(--paper);
@@ -103,7 +103,7 @@
 }
 
 .next {
-  margin-top: var(--sp-8);
+  margin-top: var(--sp-7);
 }
 
 .next a {

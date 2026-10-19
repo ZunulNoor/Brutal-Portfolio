@@ -5,20 +5,12 @@ import AsciiPortrait from "@/components/graphics/AsciiPortrait";
 import { site } from "@/lib/site";
 import styles from "./HeroAscii.module.css";
 
-/**
- * Glyph portrait source of truth is ascii-art.txt at the project root.
- * Cached so the route stays statically prerenderable (cacheComponents).
- */
 async function getPortraitLines(): Promise<string[]> {
   "use cache";
   const raw = await readFile(path.join(process.cwd(), "ascii-art.txt"), "utf8");
   return raw.split("\n").filter((l) => l.length > 0);
 }
 
-/**
- * Centered brutal hero: identity, ASCII self-portrait, CTAs.
- * (Revert path: swap <HeroAscii /> in app/page.tsx back to <HeroLegacy />.)
- */
 export default async function HeroAscii() {
   const lines = await getPortraitLines();
 
@@ -64,12 +56,8 @@ export default async function HeroAscii() {
             <strong>Karachi, Pakistan</strong>
           </li>
           <li>
-            <span>Stack</span>
-            <strong>React · Next.js · Node</strong>
-          </li>
-          <li>
             <span>Focus</span>
-            <strong>SaaS dashboards · APIs</strong>
+            <strong>MERN Stack · WordPress · Webflow</strong>
           </li>
         </ul>
         </div>

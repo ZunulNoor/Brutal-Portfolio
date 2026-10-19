@@ -1,22 +1,16 @@
-/**
- * Project content — single typed source of truth for the index,
- * home "selected work", and case-study routes (AGENTS.md §6).
- * Every claim below traces to the supplied resume/portfolio document.
- */
-
 export type ProjectKind = "professional" | "independent";
 
 export type Project = {
   slug: string;
-  /** Display number, e.g. "01". */
+
   no: string;
   title: string;
   tagline: string;
-  /** Product type, e.g. "Production logistics SaaS". */
+
   type: string;
   kind: ProjectKind;
   kindLabel: string;
-  /** Employer or context, where the source names one. */
+
   org?: string;
   role: string;
   stack: string[];
@@ -28,7 +22,7 @@ export type Project = {
   implementation: string[];
   challenges?: string[];
   outcomes: string[];
-  /** Distinct visual treatment per project, inside the shared system. */
+
   accent: {
     tone: "ink" | "paper" | "signal";
     motif: "grid" | "hatch" | "dots" | "bars";

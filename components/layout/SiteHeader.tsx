@@ -6,15 +6,10 @@ import { useEffect, useState } from "react";
 import { nav, site } from "@/lib/site";
 import styles from "./SiteHeader.module.css";
 
-/**
- * Compact, distinctive site navigation (AGENTS.md §5).
- * Client component: mobile menu state + active-link highlighting.
- */
 export default function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
-  // Close the mobile menu on Escape.
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {

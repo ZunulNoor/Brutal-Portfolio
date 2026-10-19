@@ -8,7 +8,13 @@ const resumeCanonical = canonical("/resume");
 export const metadata: Metadata = {
   title: "Resume",
   description:
-    "Resume of Zun Ul Noor, Frontend Engineer / Full-Stack Developer: professional summary, work experience, selected projects, technical skills, and education.",
+    "Resume of Zun Ul Noor — Frontend Engineer, Karachi. Experience, SaaS projects, skills, education.",
+  keywords: [
+    "Zun Ul Noor resume",
+    "frontend engineer CV Pakistan",
+    "React Next.js skills",
+    "Zip24 Shipox developer",
+  ],
   ...(resumeCanonical
     ? {
         alternates: { canonical: resumeCanonical },

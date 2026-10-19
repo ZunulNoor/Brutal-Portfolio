@@ -2,16 +2,8 @@
 
 import { useEffect, useRef } from "react";
 
-/** Braille spinner frames — render as text in the tab title. */
 const FRAMES = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"];
 
-/**
- * Tab-attention hook: while the tab is open but hidden, the title becomes
- * an animated "I'm waiting" loader to pull the visitor back. On return a
- * brief "Welcome back!" plays, then the saved page title is restored.
- * Lives in the root layout so it never unmounts across route changes.
- * Client-only, no paint cost, timers cleaned up on unmount.
- */
 export default function TabAttention() {
   const saved = useRef("");
   const spin = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -28,7 +20,7 @@ export default function TabAttention() {
     const onChange = () => {
       clear();
       if (document.hidden) {
-        // Tab can't navigate while hidden, so this is the true page title.
+
         saved.current = document.title;
         let frame = 0;
         spin.current = setInterval(() => {

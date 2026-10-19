@@ -6,7 +6,6 @@ type Props = {
   className?: string;
 };
 
-/** Reusable Cal.com booking action (AGENTS.md §9). New tab, safe rel. */
 export default function BookingCTA({
   label = "Book a meeting",
   variant = "signal",

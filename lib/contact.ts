@@ -1,8 +1,3 @@
-/**
- * Lead-inquiry validation + sanitization, shared by the client form
- * (usability) and the API route (authority). Keep in sync by reuse.
- */
-
 export const LIMITS = {
   name: 80,
   email: 254,
@@ -24,7 +19,6 @@ export const PROJECT_TYPES = [
   "Other",
 ] as const;
 
-/** Generic ladder, one week out to one year. */
 export const PROJECT_TIMELINES = [
   "1–2 weeks",
   "2–4 weeks",
@@ -39,15 +33,15 @@ export type LeadInput = {
   email: string;
   company?: string;
   type: string;
-  /** Digits only (USD). Coerced in sanitizeLead; never free text. */
+
   budget?: string;
-  /** One of PROJECT_TIMELINES when present. */
+
   timeline?: string;
   description: string;
-  /** Browser timezone + locale, client-supplied for scheduling context. */
+
   timezone?: string;
   locale?: string;
-  /** Honeypot — must stay empty. */
+
   website?: string;
 };
 
@@ -57,7 +51,6 @@ export type LeadErrors = Partial<
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-/** Trim, collapse whitespace, cap length. Never logs or stores bodies. */
 function clean(value: unknown, max: number): string {
   return String(value ?? "")
     .replace(/\s+/g, " ")

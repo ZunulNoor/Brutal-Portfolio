@@ -39,7 +39,6 @@
   min-height: 8rem;
 }
 
-/* Budget: static $ prefix fused to the input's left edge. */
 .budgetWrap {
   display: flex;
   align-items: stretch;
@@ -77,7 +76,6 @@
   margin: 0;
 }
 
-/* Honeypot: off-screen, never focusable by humans. */
 .hp {
   position: absolute;
   left: -9999px;
@@ -105,7 +103,6 @@
   text-decoration-thickness: 2px;
 }
 
-/* Readable errors on dark surfaces (e.g. the About contact block). */
 :global(.theme-dark) .fieldError,
 :global(.theme-dark) .statusError {
   color: #ff9a03;

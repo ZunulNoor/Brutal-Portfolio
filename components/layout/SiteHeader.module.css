@@ -103,6 +103,10 @@
   background: var(--paper-deep);
 }
 
+.link[aria-current="page"]:hover {
+  text-decoration: none;
+}
+
 .cta {
   margin-top: var(--sp-4);
 }
@@ -135,8 +139,17 @@
     border-bottom: 4px solid transparent;
   }
 
+  .link:hover {
+    text-decoration: none;
+    border-bottom-color: var(--ink);
+  }
+
   .link[aria-current="page"] {
     background: transparent;
+    border-bottom-color: var(--signal);
+  }
+
+  .link[aria-current="page"]:hover {
     border-bottom-color: var(--signal);
   }
 
