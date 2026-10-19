@@ -103,6 +103,70 @@
   margin-block: 0;
 }
 
+.sectionIntro {
+  margin-top: var(--sp-4);
+  max-width: 46rem;
+  font-size: var(--fs-lead);
+}
+
+.offer {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--sp-5);
+  margin-top: var(--sp-6);
+}
+
+.offer li {
+  border: var(--border);
+  background: var(--surface);
+  padding: var(--sp-5);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.offer h3 {
+  font-family: var(--font-brico), "Arial Narrow", Arial, sans-serif;
+  font-size: var(--fs-small);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.offer h3::before {
+  content: "▪ ";
+  color: var(--signal);
+}
+
+.offer p {
+  margin-top: var(--sp-2);
+}
+
+.principles {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--sp-5);
+  margin-top: var(--sp-6);
+}
+
+.principles li {
+  border-left: 6px solid var(--signal);
+  padding-left: var(--sp-4);
+}
+
+.principles h3 {
+  font-family: var(--font-brico), "Arial Narrow", Arial, sans-serif;
+  font-size: var(--fs-small);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.principles p {
+  margin-top: var(--sp-2);
+  max-width: 44rem;
+}
+
 .capGrid {
   list-style: none;
   padding: 0;
@@ -160,6 +224,14 @@
 
   .capGrid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .offer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .principles {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 

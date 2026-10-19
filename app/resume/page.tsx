@@ -106,7 +106,9 @@ export default function ResumePage() {
           <article className={styles.job}>
             <h3>
               Zipped Docs — WordPress plugin · PHP, JavaScript, REST API ·{" "}
-              <Link href="/projects/zipped-docs">Case study</Link>
+              <Link href="/projects/zipped-docs">
+                Zipped Docs case study
+              </Link>
             </h3>
             <ul>
               <li>Built a WordPress documentation plugin featuring a hierarchical table of contents, scroll-spy navigation, client-side search, and a REST API endpoint.</li>
@@ -117,7 +119,9 @@ export default function ResumePage() {
           <article className={styles.job}>
             <h3>
               Personalized Healthcare Risk Prediction · Python, XGBoost, Streamlit ·{" "}
-              <Link href="/projects/healthcare-risk-prediction">Case study</Link>
+              <Link href="/projects/healthcare-risk-prediction">
+                Healthcare Risk Prediction case study
+              </Link>
             </h3>
             <ul>
               <li>Built a machine-learning web app predicting diabetes risk from lifestyle, health history, and demographic inputs (21 features), using a trained XGBoost classifier (approximately 86% accuracy, ROC AUC 0.82+).</li>

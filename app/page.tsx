@@ -65,6 +65,104 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="section" aria-labelledby="what-i-do-heading">
+        <div className="container">
+          <p className="label">What I do</p>
+          <h2 id="what-i-do-heading" className={styles.sectionTitle}>
+            Where I spend my days.
+          </h2>
+          <p className={styles.sectionIntro}>
+            Most of my work sits in one place: interfaces that real businesses
+            run on. I maintain production SaaS dashboards where one broken
+            filter can stall a dispatch team, build new product screens from
+            design files, and extend sites and plugins on WordPress. The stack
+            around that work is React, Next.js, and TypeScript on the frontend,
+            Node.js and REST APIs behind it, and — increasingly — Python and
+            Streamlit when a product needs a model in the loop. What stays
+            constant is the way I work: read the existing system first, change
+            it surgically, and verify it against real workflows.
+          </p>
+          <ul className={styles.offer}>
+            <li>
+              <h3>SaaS dashboards</h3>
+              <p>
+                Ongoing maintenance and feature work on live dashboards —
+                order, dispatch, driver, and reporting views — including
+                production bug fixes and client-driven functionality shipped
+                without breaking existing business workflows.
+              </p>
+            </li>
+            <li>
+              <h3>Product interfaces</h3>
+              <p>
+                Figma-to-production implementation for booking flows, maps, and
+                operational tools. Responsive by default: the design has to
+                hold on every viewport, not just the artboard.
+              </p>
+            </li>
+            <li>
+              <h3>WordPress &amp; plugins</h3>
+              <p>
+                Custom plugin engineering — content architecture, Gutenberg
+                blocks, shortcodes, REST endpoints, and security hardening. My
+                own plugin, Zipped Docs, is published on the WordPress Plugin
+                Directory.
+              </p>
+            </li>
+            <li>
+              <h3>Python &amp; ML products</h3>
+              <p>
+                Applied machine learning on the web: Streamlit applications
+                wired to trained models, interactive prediction workflows, and
+                recommendation output framed as guidance — shipped as working
+                products, not notebooks.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section className="section" aria-labelledby="approach-heading">
+        <div className="container">
+          <p className="label">Approach</p>
+          <h2 id="approach-heading" className={styles.sectionTitle}>
+            How the work gets done.
+          </h2>
+          <p className={styles.sectionIntro}>
+            Working on production software teaches you restraint. New features
+            land inside systems other people depend on, so my first job is
+            always to understand what exists — the data flows, the edge cases,
+            the business rules hiding in the UI — before changing anything.
+          </p>
+          <ul className={styles.principles}>
+            <li>
+              <h3>Maintain before you rebuild</h3>
+              <p>
+                Read the existing system first. Extend it where it is strong,
+                replace only what genuinely fails the user, and keep the change
+                surgical.
+              </p>
+            </li>
+            <li>
+              <h3>Operational clarity is design</h3>
+              <p>
+                Pagination, search, filtering, loading states — the unglamorous
+                interface work is where products succeed or fail. I treat
+                clarity as a design requirement, not a nice-to-have.
+              </p>
+            </li>
+            <li>
+              <h3>Ship the whole thing</h3>
+              <p>
+                From architecture through release, including the security and
+                deployment details — a WordPress plugin on the public directory
+                and a deployed ML app are the proof.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
       <section className="section" aria-labelledby="about-teaser-heading">
         <div className="container">
           <div className={styles.teaser}>
@@ -77,15 +175,17 @@ export default function Home() {
                 I maintain production SaaS, build interfaces from Figma to
                 deployment, and ship independent products — a published
                 WordPress plugin and a deployed ML app. Business workflows
-                first, technology in service of them.
+                first, technology in service of them. Most projects start the
+                same way: a short conversation about what is actually broken
+                or missing, then a scoped first step.
               </p>
             </div>
             <div className={styles.teaserCtas}>
               <Link className="btn btn--ink" href="/about">
-                More about me
+                More about my background
               </Link>
               <Link className="btn" href="/resume">
-                Read the resume
+                Read my full resume
               </Link>
             </div>
           </div>

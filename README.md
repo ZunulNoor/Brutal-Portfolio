@@ -39,7 +39,7 @@ Copy `.env.example` to `.env.local` and fill in:
 
 | Variable | Purpose |
 | --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | Canonical site URL (no hardcoded domain in code) |
+| `NEXT_PUBLIC_SITE_URL` | Canonical site URL (no hardcoded domain in code). **Must also be set in Vercel → Settings → Environment Variables** (e.g. `https://zunulnoor.vercel.app`) — without it production serves an empty sitemap, robots.txt with no sitemap line, and no canonical/OG URLs |
 | `RESEND_API_KEY` | Resend API key for the contact form |
 | `CONTACT_TO_EMAIL` | Inbox receiving inquiries |
 | `CONTACT_FROM_EMAIL` | Verified sender identity |

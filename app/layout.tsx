@@ -57,17 +57,30 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
   openGraph: {
     type: "website",
+    locale: "en_US",
     siteName: `${site.name} — Portfolio`,
     title: `${site.name} — ${site.role}`,
     description,
     ...(homeCanonical ? { url: homeCanonical } : {}),
-    images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: `${site.name} — Frontend Engineer / Full-Stack Developer portfolio`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${site.name} — ${site.role}`,
     description,
-    images: ["/opengraph-image"],
+    images: [
+      {
+        url: "/opengraph-image",
+        alt: `${site.name} — Frontend Engineer / Full-Stack Developer portfolio`,
+      },
+    ],
   },
 };
 

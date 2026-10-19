@@ -24,7 +24,7 @@ export default function SiteFooter() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Book a meeting
+              Book a meeting on Cal.com
             </a>
             <Link className="btn" href="/about">
               Start a project

@@ -50,6 +50,18 @@
   line-height: 0.9;
 }
 
+.nameRole {
+  display: block;
+  margin-top: var(--sp-3);
+  font-family: var(--font-brico), "Arial Narrow", Arial, sans-serif;
+  font-size: clamp(0.95rem, 2vw, 1.375rem);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--concrete);
+}
+
 .lead {
   max-width: 36rem;
   font-size: var(--fs-lead);
