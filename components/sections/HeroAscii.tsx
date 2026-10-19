@@ -33,13 +33,13 @@ export default async function HeroAscii() {
         </div>
         <div className={styles.body}>
         <p className={styles.lead}>
-          I&apos;m {site.name}, a frontend engineer working on production SaaS
-          dashboards, responsive interfaces, and API-driven web applications —
-          across React, Next.js, Node.js, WordPress, and Python. Day to day
-          that means maintaining live dashboards, turning Figma designs into
-          responsive product screens, and sweating the operational details —
-          pagination, filtering, tracking states — where interfaces succeed or
-          fail.
+          I&apos;m {site.name} — a frontend engineer and full-stack developer
+          based in Karachi, Pakistan, working on production SaaS dashboards,
+          responsive interfaces, and API-driven web applications across React,
+          Next.js, Node.js, WordPress, and Python. Day to day that means
+          maintaining live dashboards, turning Figma designs into responsive
+          product screens, and sweating the operational details — pagination,
+          filtering, tracking states — where interfaces succeed or fail.
         </p>
         <div className={styles.ctas}>
           <Link className="btn btn--ink" href="/projects">

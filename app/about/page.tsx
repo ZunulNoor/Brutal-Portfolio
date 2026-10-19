@@ -166,7 +166,7 @@ export default function AboutPage() {
                 Book a slot, no form needed.
               </p>
               <p className={styles.contactCtas}>
-                <BookingCTA />
+                <BookingCTA label="Schedule a call" />
               </p>
               <p className={styles.mailto}>
                 <a href={`mailto:${site.email}`}>{site.email}</a>

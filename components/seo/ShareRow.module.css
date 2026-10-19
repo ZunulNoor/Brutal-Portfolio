@@ -1,0 +1,56 @@
+.share {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-top: var(--sp-5);
+}
+
+.label {
+  font-family: var(--font-brico), "Arial Narrow", Arial, sans-serif;
+  font-size: var(--fs-label);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--concrete);
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.list a {
+  display: inline-block;
+  padding: var(--sp-1) var(--sp-3);
+  border: var(--border);
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-brico), "Arial Narrow", Arial, sans-serif;
+  font-size: var(--fs-label);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 3px 3px 0 var(--ink);
+  transition: translate 120ms ease, box-shadow 120ms ease;
+}
+
+.list a:hover {
+  translate: -1px -1px;
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.theme-dark .label {
+  color: var(--paper);
+}
+
+.theme-dark .list a {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--paper);
+  box-shadow: 3px 3px 0 var(--paper);
+}

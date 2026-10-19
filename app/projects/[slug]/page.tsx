@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getNextProject, getProject, projects } from "@/content/projects";
+import ShareRow from "@/components/seo/ShareRow";
 import { canonical, site } from "@/lib/site";
 import styles from "./case-study.module.css";
 
@@ -58,6 +59,7 @@ export default async function CaseStudyPage({
   const project = getProject(slug);
   if (!project) notFound();
   const next = getNextProject(slug);
+  const shareUrl = canonical(`/projects/${slug}`) ?? "";
   const base = (process.env.NEXT_PUBLIC_SITE_URL ?? "").replace(/\/$/, "");
   const breadcrumb = {
     "@context": "https://schema.org",
@@ -189,9 +191,14 @@ export default async function CaseStudyPage({
               target="_blank"
               rel="noopener noreferrer"
             >
-              Book a meeting
+              Discuss a project
             </a>
           </p>
+          <ShareRow
+            url={shareUrl}
+            text={`${project.title} — case study by ${site.name}`}
+            label="Share this case study"
+          />
         </section>
 
         <nav aria-label="Next project" className={styles.next}>

@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { Suspense } from "react";
-import { nav, site } from "@/lib/site";
+import ShareRow from "@/components/seo/ShareRow";
+import { canonical, nav, site } from "@/lib/site";
 import CopyrightYear from "./CopyrightYear";
 import styles from "./SiteFooter.module.css";
 
 export default function SiteFooter() {
+  const homeUrl = canonical("/") ?? "";
   return (
     <footer className={`theme-dark ${styles.footer}`}>
       <div className="container">
@@ -27,7 +29,7 @@ export default function SiteFooter() {
               Book a meeting on Cal.com
             </a>
             <Link className="btn" href="/about">
-              Start a project
+              Send an inquiry
             </Link>
           </div>
         </div>
@@ -63,6 +65,11 @@ export default function SiteFooter() {
             {" · "}
             {site.location}
           </address>
+          <ShareRow
+            url={homeUrl}
+            text={`${site.name} — ${site.role} portfolio`}
+            label="Share this site"
+          />
         </nav>
       </div>
     </footer>

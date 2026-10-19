@@ -166,7 +166,7 @@ export default function ResumePage() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Book a meeting
+            Schedule a call
           </a>
           <Link className="btn" href="/about">
             Start a project

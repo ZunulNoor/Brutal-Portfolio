@@ -36,7 +36,7 @@ export default function Home() {
           </ul>
           <p className={styles.more}>
             <Link href="/projects">
-              Full index — all {projects.length} case studies →
+              All {projects.length} case studies →
             </Link>
           </p>
         </div>
@@ -60,7 +60,7 @@ export default function Home() {
             ))}
           </ul>
           <p className={styles.more}>
-            <Link href="/about">How I work — engineering approach →</Link>
+            <Link href="/about">How I work →</Link>
           </p>
         </div>
       </section>

@@ -73,7 +73,7 @@ export default function SiteHeader() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Book a meeting
+            Schedule a call
           </a>
         </nav>
       </div>
